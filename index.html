@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Jones | HVAC/R Instructor | Kilgore College</title>
+    <style>
+        :root {
+            --primary: #003366; /* Official-style Blue */
+            --secondary: #cc0000; /* Official-style Red */
+            --bg: #f8f9fa;
+            --text: #212529;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #a00000;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jason Jones</h1>
+        <p>HVAC/R Instructor | Kilgore College</p>
+    </header>
+
+    <main>
+        <h2>Welcome</h2>
+        <p>Welcome to the official portal for HVAC/R instruction. Use the link below to access specific procedures for your coursework.</p>
+        
+        <p id="date-text"></p>
+
+        <a href="recovery.html" class="cta-button">View Refrigerant Recovery Procedures</a>
+    </main>
+
+    <footer>
+        &copy; 2026 Kilgore College HVAC/R Department
+    </footer>
+
+    <script>
+        // Set the current date in the UI
+        const dateElement = document.getElementById('date-text');
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = "Current Date: " + new Date().toLocaleDateString(undefined, options);
+    </script>
+</body>
+</html>
