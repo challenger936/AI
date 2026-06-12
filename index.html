@@ -40,6 +40,13 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
         .cta-button {
             display: inline-block;
             background-color: var(--secondary);
@@ -48,8 +55,8 @@
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
-            margin-top: 1rem;
             transition: background 0.3s ease;
+            text-align: center;
         }
 
         .cta-button:hover {
@@ -73,11 +80,14 @@
 
     <main>
         <h2>Welcome</h2>
-        <p>Welcome to the official portal for HVAC/R instruction. Use the link below to access specific procedures for your coursework.</p>
+        <p>Welcome to the official portal for HVAC/R instruction. Use the links below to access specific procedures or tools for your coursework.</p>
         
         <p id="date-text"></p>
 
-        <a href="recovery.html" class="cta-button">View Refrigerant Recovery Procedures</a>
+        <div class="cta-container">
+            <a href="recovery.html" class="cta-button">View Refrigerant Recovery Procedures</a>
+            <a href="lessongen.html" class="cta-button">Access Lesson Generator</a>
+        </div>
     </main>
 
     <footer>
