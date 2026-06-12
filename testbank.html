@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HVAC 10-Question Exam - Blackboard Ultra</title>
+<style>
+  :root { --bg:#f4f6f8; --card:#ffffff; --text:#1f2937; --accent:#005eb8; --correct:#0f7b0f; --incorrect:#b00020; --border:#d0d7de; --muted:#f9fafb; }
+  body { font-family: Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:20px; line-height:1.5; }
+  .container { max-width:900px; margin:auto; background:var(--card); padding:24px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+  h1,h2 { color:var(--accent); }
+  .toolbar,.platform-box,.answer-key { margin:18px 0; padding:16px; border:1px solid var(--border); border-radius:8px; background:var(--muted); }
+  .question { border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:18px; background:#fff; }
+  .question legend { font-weight:bold; margin-bottom:8px; } label { display:block; margin:8px 0; cursor:pointer; } input[type=radio] { margin-right:8px; }
+  button { background:var(--accent); color:white; border:none; padding:12px 18px; border-radius:6px; cursor:pointer; font-size:1rem; margin:6px 6px 6px 0; }
+  button.secondary { background:#374151; } button:hover,button:focus { opacity:.9; outline:3px solid #99c2ff; }
+  select,textarea { width:100%; max-width:100%; padding:10px; border:1px solid var(--border); border-radius:6px; font-family:Arial, Helvetica, sans-serif; }
+  textarea { min-height:180px; font-family:Consolas, monospace; } .result { font-size:1.1rem; font-weight:bold; margin-top:16px; padding:12px; border-radius:6px; }
+  .feedback { margin-top:8px; font-weight:bold; } .correct { color:var(--correct); } .incorrect { color:var(--incorrect); } .hidden { display:none; }
+  @media print { .toolbar,.platform-box button,.feedback,#scoreBox { display:none !important; } body { background:white; padding:0; } .container { box-shadow:none; max-width:100%; } .question { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main class="container">
+  <h1>HVAC College-Level Exam</h1>
+  <p><strong>Instructions:</strong> Select the best answer for each question. When finished, select <strong>Submit Exam</strong> to view your score. This is original content and can be used as an HTML learning object in Blackboard Ultra.</p>
+
+  <section class="toolbar" aria-label="Exam tools">
+    <button type="button" onclick="gradeExam()">Submit Exam</button>
+    <button type="button" class="secondary" onclick="window.print()">Print Exam</button>
+    <button type="button" class="secondary" onclick="saveAsPdf()">PDF / Save as PDF</button>
+    <button type="button" class="secondary" onclick="copyPromptText()">Copy Exam Text</button>
+  </section>
+
+  <section class="platform-box">
+    <h2>Platform / Blackboard Ultra Options</h2>
+    <label for="platformSelect"><strong>Select platform format:</strong></label>
+    <select id="platformSelect" onchange="updatePlatformText()">
+      <option value="blackboard">Blackboard Ultra HTML page</option>
+      <option value="qti">QTI-compatible quiz import reference</option>
+      <option value="pdf">PDF/printable exam handout</option>
+      <option value="plain">Plain text answer key</option>
+    </select>
+    <p id="platformHelp">Use this HTML file in Blackboard Ultra as a document/page item, or use the separate QTI ZIP file for quiz import when available.</p>
+    <textarea id="platformText" aria-label="Platform instructions" readonly></textarea>
+  </section>
+
+  <form id="examForm" aria-label="HVAC multiple choice exam">
+    <fieldset class="question">
+      <legend>1. What is the primary purpose of superheat measurement in an operating vapor-compression refrigeration system?</legend>
+      <label><input type="radio" name="q1" value="A"> A. To determine if refrigerant is fully condensed before entering the metering device</label>
+      <label><input type="radio" name="q1" value="B"> B. To verify that vapor leaving the evaporator contains no liquid refrigerant</label>
+      <label><input type="radio" name="q1" value="C"> C. To calculate compressor oil viscosity</label>
+      <label><input type="radio" name="q1" value="D"> D. To measure electrical resistance in the compressor windings</label>
+      <div class="feedback" id="fb1"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>2. A low suction pressure and high superheat condition most commonly indicates which problem?</legend>
+      <label><input type="radio" name="q2" value="A"> A. Refrigerant overcharge</label>
+      <label><input type="radio" name="q2" value="B"> B. Restricted airflow across the condenser</label>
+      <label><input type="radio" name="q2" value="C"> C. Starved evaporator or low refrigerant charge</label>
+      <label><input type="radio" name="q2" value="D"> D. Compressor shorted to ground</label>
+      <div class="feedback" id="fb2"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>3. In a PSC blower motor circuit, the run capacitor is used primarily to:</legend>
+      <label><input type="radio" name="q3" value="A"> A. Increase refrigerant pressure</label>
+      <label><input type="radio" name="q3" value="B"> B. Create a phase shift for motor starting and running torque</label>
+      <label><input type="radio" name="q3" value="C"> C. Protect the thermostat from low voltage</label>
+      <label><input type="radio" name="q3" value="D"> D. Convert DC voltage to AC voltage</label>
+      <div class="feedback" id="fb3"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>4. Which refrigerant safety practice is required before opening a system for service?</legend>
+      <label><input type="radio" name="q4" value="A"> A. Vent refrigerant to atmosphere if the system is residential</label>
+      <label><input type="radio" name="q4" value="B"> B. Recover refrigerant using approved recovery equipment</label>
+      <label><input type="radio" name="q4" value="C"> C. Add nitrogen to increase system pressure</label>
+      <label><input type="radio" name="q4" value="D"> D. Bypass the service valves</label>
+      <div class="feedback" id="fb4"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>5. What is the purpose of pulling a deep vacuum during system evacuation?</legend>
+      <label><input type="radio" name="q5" value="A"> A. To remove air and moisture from the refrigeration system</label>
+      <label><input type="radio" name="q5" value="B"> B. To increase evaporator airflow</label>
+      <label><input type="radio" name="q5" value="C"> C. To test thermostat calibration only</label>
+      <label><input type="radio" name="q5" value="D"> D. To lower compressor amperage permanently</label>
+      <div class="feedback" id="fb5"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>6. A technician measures 24 volts at the transformer secondary but no voltage at the contactor coil during a cooling call. Which component should be checked first?</legend>
+      <label><input type="radio" name="q6" value="A"> A. Condenser fan blade pitch</label>
+      <label><input type="radio" name="q6" value="B"> B. Low-voltage control circuit safeties and thermostat wiring</label>
+      <label><input type="radio" name="q6" value="C"> C. Compressor discharge temperature only</label>
+      <label><input type="radio" name="q6" value="D"> D. Refrigerant cylinder tare weight</label>
+      <div class="feedback" id="fb6"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>7. Which condition would most likely cause high head pressure in an air-cooled condenser?</legend>
+      <label><input type="radio" name="q7" value="A"> A. Dirty condenser coil</label>
+      <label><input type="radio" name="q7" value="B"> B. Low indoor humidity</label>
+      <label><input type="radio" name="q7" value="C"> C. Oversized suction line insulation</label>
+      <label><input type="radio" name="q7" value="D"> D. Open thermostat circuit</label>
+      <div class="feedback" id="fb7"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>8. What does a filter drier primarily remove from a refrigeration system?</legend>
+      <label><input type="radio" name="q8" value="A"> A. Sensible heat only</label>
+      <label><input type="radio" name="q8" value="B"> B. Moisture, acids, and small contaminants</label>
+      <label><input type="radio" name="q8" value="C"> C. Compressor amperage</label>
+      <label><input type="radio" name="q8" value="D"> D. Airflow restrictions in ductwork</label>
+      <div class="feedback" id="fb8"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>9. In cooling mode, where should the evaporator coil normally be located in a split air-conditioning system?</legend>
+      <label><input type="radio" name="q9" value="A"> A. In the outdoor condensing unit only</label>
+      <label><input type="radio" name="q9" value="B"> B. In the indoor air handler or furnace cabinet</label>
+      <label><input type="radio" name="q9" value="C"> C. Inside the liquid line service valve</label>
+      <label><input type="radio" name="q9" value="D"> D. Between the compressor and condenser coil</label>
+      <div class="feedback" id="fb9"></div>
+    </fieldset>
+    <fieldset class="question">
+      <legend>10. Which measurement is most useful for verifying proper airflow across an evaporator coil when manufacturer data is available?</legend>
+      <label><input type="radio" name="q10" value="A"> A. Static pressure and temperature split</label>
+      <label><input type="radio" name="q10" value="B"> B. Wall color near the thermostat</label>
+      <label><input type="radio" name="q10" value="C"> C. Breaker panel brand</label>
+      <label><input type="radio" name="q10" value="D"> D. Length of thermostat wire only</label>
+      <div class="feedback" id="fb10"></div>
+    </fieldset>
+    <button type="button" onclick="gradeExam()">Submit Exam</button>
+    <button type="reset" onclick="resetExam()">Reset</button>
+  </form>
+  <div id="scoreBox" class="result hidden" role="status" aria-live="polite"></div>
+  <section class="answer-key"><h2>Instructor Answer Key</h2><ol>
+      <li>B</li>
+      <li>C</li>
+      <li>B</li>
+      <li>B</li>
+      <li>A</li>
+      <li>B</li>
+      <li>A</li>
+      <li>B</li>
+      <li>B</li>
+      <li>A</li>
+    </ol></section>
+</main>
+<script>
+const answers = { q1: "B", q2: "C", q3: "B", q4: "B", q5: "A", q6: "B", q7: "A", q8: "B", q9: "B", q10: "A" };
+const examText = `1. What is the primary purpose of superheat measurement in an operating vapor-compression refrigeration system?
+A. To determine if refrigerant is fully condensed before entering the metering device
+B. To verify that vapor leaving the evaporator contains no liquid refrigerant
+C. To calculate compressor oil viscosity
+D. To measure electrical resistance in the compressor windings
+Answer: B
+
+2. A low suction pressure and high superheat condition most commonly indicates which problem?
+A. Refrigerant overcharge
+B. Restricted airflow across the condenser
+C. Starved evaporator or low refrigerant charge
+D. Compressor shorted to ground
+Answer: C
+
+3. In a PSC blower motor circuit, the run capacitor is used primarily to:
+A. Increase refrigerant pressure
+B. Create a phase shift for motor starting and running torque
+C. Protect the thermostat from low voltage
+D. Convert DC voltage to AC voltage
+Answer: B
+
+4. Which refrigerant safety practice is required before opening a system for service?
+A. Vent refrigerant to atmosphere if the system is residential
+B. Recover refrigerant using approved recovery equipment
+C. Add nitrogen to increase system pressure
+D. Bypass the service valves
+Answer: B
+
+5. What is the purpose of pulling a deep vacuum during system evacuation?
+A. To remove air and moisture from the refrigeration system
+B. To increase evaporator airflow
+C. To test thermostat calibration only
+D. To lower compressor amperage permanently
+Answer: A
+
+6. A technician measures 24 volts at the transformer secondary but no voltage at the contactor coil during a cooling call. Which component should be checked first?
+A. Condenser fan blade pitch
+B. Low-voltage control circuit safeties and thermostat wiring
+C. Compressor discharge temperature only
+D. Refrigerant cylinder tare weight
+Answer: B
+
+7. Which condition would most likely cause high head pressure in an air-cooled condenser?
+A. Dirty condenser coil
+B. Low indoor humidity
+C. Oversized suction line insulation
+D. Open thermostat circuit
+Answer: A
+
+8. What does a filter drier primarily remove from a refrigeration system?
+A. Sensible heat only
+B. Moisture, acids, and small contaminants
+C. Compressor amperage
+D. Airflow restrictions in ductwork
+Answer: B
+
+9. In cooling mode, where should the evaporator coil normally be located in a split air-conditioning system?
+A. In the outdoor condensing unit only
+B. In the indoor air handler or furnace cabinet
+C. Inside the liquid line service valve
+D. Between the compressor and condenser coil
+Answer: B
+
+10. Which measurement is most useful for verifying proper airflow across an evaporator coil when manufacturer data is available?
+A. Static pressure and temperature split
+B. Wall color near the thermostat
+C. Breaker panel brand
+D. Length of thermostat wire only
+Answer: A
+`;
+const platformMessages = {
+  blackboard: "Blackboard Ultra HTML page:\n1. Upload this HTML file to your course content area.\n2. Open or embed it as a learning object/page.\n3. Students can complete it interactively, and the instructor answer key appears at the bottom.\nNote: HTML self-check pages do not automatically write grades to the Blackboard gradebook.",
+  qti: "QTI-compatible quiz import reference:\nUse the included QTI ZIP package if you want Blackboard Ultra to build a quiz item that can report scores to the gradebook. Import it through Blackboard's test/question import tools. Review all questions after import.",
+  pdf: "PDF/printable exam handout:\nUse the PDF button or your browser print menu, then choose Save as PDF. A separate printable PDF copy is also included.",
+  plain: examText
+};
+function updatePlatformText() { const v=document.getElementById('platformSelect').value; document.getElementById('platformText').value=platformMessages[v]; }
+function gradeExam() { let score=0; const total=Object.keys(answers).length; for(let i=1;i<=total;i++) { const qName='q'+i; const selected=document.querySelector(`input[name="${qName}"]:checked`); const feedback=document.getElementById('fb'+i); if(!selected) { feedback.textContent='No answer selected. Correct answer: '+answers[qName]; feedback.className='feedback incorrect'; } else if(selected.value===answers[qName]) { score++; feedback.textContent='Correct.'; feedback.className='feedback correct'; } else { feedback.textContent='Incorrect. Correct answer: '+answers[qName]; feedback.className='feedback incorrect'; } } const percent=Math.round((score/total)*100); const scoreBox=document.getElementById('scoreBox'); scoreBox.textContent=`Score: ${score} out of ${total} (${percent}%)`; scoreBox.className='result'; }
+function resetExam() { for(let i=1;i<=10;i++) { const feedback=document.getElementById('fb'+i); feedback.textContent=''; feedback.className='feedback'; } document.getElementById('scoreBox').className='result hidden'; }
+function saveAsPdf() { alert('Choose “Save as PDF” or your PDF printer in the print dialog.'); window.print(); }
+async function copyPromptText() { try { await navigator.clipboard.writeText(examText); alert('Exam text copied.'); } catch(e) { const t=document.getElementById('platformText'); t.value=examText; t.select(); document.execCommand('copy'); } }
+updatePlatformText();
+</script>
+</body>
+</html>
