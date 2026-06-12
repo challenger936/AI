@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community College Lesson Prompt Generator</title>
+  <style>
+    :root {
+      --primary: #1f4e79;
+      --secondary: #f4f7fb;
+      --accent: #f2b705;
+      --text: #222;
+      --border: #d7dde5;
+      --success: #1f7a4d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      margin-top: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      margin: 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .checkbox-group input {
+      width: auto;
+      margin: 0;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: white;
+    }
+
+    .secondary-btn {
+      background: var(--accent);
+      color: #1b1b1b;
+    }
+
+    .clear-btn {
+      background: #e7e7e7;
+      color: #222;
+    }
+
+    #output {
+      min-height: 550px;
+      white-space: pre-wrap;
+      background: #fbfbfb;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-weight: bold;
+      color: var(--success);
+      min-height: 22px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .note {
+      background: #fff8df;
+      border-left: 5px solid var(--accent);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 850px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      #output {
+        min-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Community College Lesson Prompt Generator</h1>
+    <p>Create detailed lesson-design prompts for ChatGPT, Copilot, Gemini, Claude, or other AI tools.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Lesson Information</h2>
+
+      <div class="note">
+        Fill in the fields below, then generate a copy-ready prompt for building a complete lesson.
+      </div>
+
+      <label for="courseTitle">Course Name</label>
+      <input id="courseTitle" type="text" placeholder="Example: HVAC Residential Air Conditioning" />
+
+      <label for="lessonTitle">Title of the Lesson</label>
+      <input id="lessonTitle" type="text" placeholder="Example: Diagnosing Refrigerant System Problems" />
+
+      <label for="objectives">Learning Objectives</label>
+      <textarea id="objectives" placeholder="Example: Identify common refrigerant system faults; explain superheat and subcooling; demonstrate safe gauge use."></textarea>
+
+      <label for="topics">Topics Covered</label>
+      <textarea id="topics" placeholder="Example: Refrigerant cycle, pressure-temperature relationship, charging procedures, troubleshooting steps."></textarea>
+
+      <label for="keyTerms">Key Terms</label>
+      <textarea id="keyTerms" placeholder="Example: superheat, subcooling, saturation temperature, evaporator, condenser, TXV."></textarea>
+
+      <label for="audience">Audience</label>
+      <input id="audience" type="text" placeholder="Example: First-year community college HVAC students" />
+
+      <label for="lessonLength">Lesson Length</label>
+      <input id="lessonLength" type="text" placeholder="Example: 90 minutes, 3 hours, one week, etc." />
+
+      <label for="deliveryMode">Delivery Mode</label>
+      <select id="deliveryMode">
+        <option value="Face-to-face">Face-to-face</option>
+        <option value="Online">Online</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Lab-based">Lab-based</option>
+      </select>
+
+      <label>Types of Activities</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="Interactive discussion" class="activity" /> Interactive discussion</label>
+        <label><input type="checkbox" value="Team project" class="activity" /> Team project</label>
+        <label><input type="checkbox" value="Hands-on lab" class="activity" /> Hands-on lab</label>
+        <label><input type="checkbox" value="Case study or troubleshooting scenario" class="activity" /> Case study / troubleshooting scenario</label>
+        <label><input type="checkbox" value="Knowledge check or quiz" class="activity" /> Knowledge check / quiz</label>
+        <label><input type="checkbox" value="Reflection or exit ticket" class="activity" /> Reflection / exit ticket</label>
+      </div>
+
+      <label for="ada">ADA Compliance / Accessibility Needs</label>
+      <textarea id="ada" placeholder="Example: Include captions, readable fonts, alt text, screen-reader friendly structure, multiple means of engagement, and accommodations for hands-on labs."></textarea>
+
+      <label for="extra">Additional Instructor Notes</label>
+      <textarea id="extra" placeholder="Example: Include workplace safety, OSHA awareness, employability skills, and real-world industry examples."></textarea>
+
+      <div class="button-row">
+        <button class="primary-btn" onclick="generatePrompt()">Generate Prompt</button>
+        <button class="secondary-btn" onclick="copyPrompt()">Copy Prompt</button>
+        <button class="clear-btn" onclick="clearForm()">Clear</button>
+      </div>
+
+      <div id="status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section>
+      <h2>Generated Prompt</h2>
+      <textarea id="output" readonly placeholder="Your generated prompt will appear here."></textarea>
+    </section>
+
+    <section class="full-width">
+      <h2>Suggested Use</h2>
+      <p>
+        Copy the generated prompt and paste it into your preferred AI platform. Review the AI output for accuracy,
+        local college requirements, safety procedures, ADA compliance, and course outcomes before using it with students.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    function getValue(id, fallback = "Not provided") {
+      const value = document.getElementById(id).value.trim();
+      return value || fallback;
+    }
+
+    function getSelectedActivities() {
+      const selected = Array.from(document.querySelectorAll(".activity:checked"))
+        .map(item => item.value);
+
+      return selected.length ? selected.join(", ") : "Instructor-selected activities not provided";
+    }
+
+    function generatePrompt() {
+      const courseTitle = getValue("courseTitle");
+      const lessonTitle = getValue("lessonTitle");
+      const objectives = getValue("objectives");
+      const topics = getValue("topics");
+      const keyTerms = getValue("keyTerms");
+      const audience = getValue("audience");
+      const lessonLength = getValue("lessonLength");
+      const deliveryMode = getValue("deliveryMode");
+      const activities = getSelectedActivities();
+      const ada = getValue("ada", "Include ADA-compliant and accessible lesson materials.");
+      const extra = getValue("extra", "No additional instructor notes provided.");
+
+      const prompt = `Act as an experienced community college professor and instructional designer.
+
+Create a complete lesson plan for the following course and lesson.
+
+COURSE NAME:
+${courseTitle}
+
+LESSON TITLE:
+${lessonTitle}
+
+AUDIENCE:
+${audience}
+
+LESSON LENGTH:
+${lessonLength}
+
+DELIVERY MODE:
+${deliveryMode}
+
+LEARNING OBJECTIVES:
+${objectives}
+
+TOPICS COVERED:
+${topics}
+
+KEY TERMS:
+${keyTerms}
+
+TYPES OF ACTIVITIES TO INCLUDE:
+${activities}
+
+ADA COMPLIANCE AND ACCESSIBILITY REQUIREMENTS:
+${ada}
+
+ADDITIONAL INSTRUCTOR NOTES:
+${extra}
+
+Please create a complete, ready-to-use lesson that includes:
+
+1. Lesson overview
+2. Measurable learning objectives
+3. Required materials, tools, equipment, software, or handouts
+4. Key vocabulary and student-friendly definitions
+5. Instructor preparation steps
+6. Opening activity or hook
+7. Direct instruction section
+8. Guided practice
+9. Student activity or lab
+10. Team-based or interactive activity, if appropriate
+11. Real-world workplace connection
+12. Safety considerations, if applicable
+13. ADA-compliant accommodations and accessibility supports
+14. Assessment methods
+15. Knowledge-check questions with answers
+16. Exit ticket or reflection question
+17. Suggested homework or follow-up activity
+18. A clear lesson timeline
+19. Rubric or grading checklist, if appropriate
+
+Write the lesson at a community college level. Use clear language, practical examples, and career-focused applications. Make the lesson engaging, structured, inclusive, and appropriate for adult learners.`;
+
+      document.getElementById("output").value = prompt;
+      document.getElementById("status").textContent = "Prompt generated.";
+    }
+
+    function copyPrompt() {
+      const output = document.getElementById("output");
+
+      if (!output.value.trim()) {
+        document.getElementById("status").textContent = "Generate a prompt first.";
+        return;
+      }
+
+      output.select();
+      output.setSelectionRange(0, 99999);
+
+      navigator.clipboard.writeText(output.value)
+        .then(() => {
+          document.getElementById("status").textContent = "Prompt copied to clipboard.";
+        })
+        .catch(() => {
+          document.execCommand("copy");
+          document.getElementById("status").textContent = "Prompt copied.";
+        });
+    }
+
+    function clearForm() {
+      const fields = document.querySelectorAll("input[type='text'], textarea");
+      fields.forEach(field => field.value = "");
+
+      const checks = document.querySelectorAll("input[type='checkbox']");
+      checks.forEach(check => check.checked = false);
+
+      document.getElementById("deliveryMode").selectedIndex = 0;
+      document.getElementById("status").textContent = "Form cleared.";
+    }
+  </script>
+</body>
+</html>
